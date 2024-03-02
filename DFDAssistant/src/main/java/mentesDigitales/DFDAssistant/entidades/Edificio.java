@@ -11,8 +11,10 @@ public class Edificio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long idEdificio;
 	
 	@Column(name = "direccion")
 	private String direccion;
+	
+	
 }
