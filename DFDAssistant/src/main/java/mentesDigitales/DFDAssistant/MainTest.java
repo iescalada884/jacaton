@@ -9,10 +9,9 @@ public class MainTest {
 
 	public static void main(String[] args) {
 		
-		
 		Node nodeE = new Node("E", 3);		
 		Node nodeD = new Node("D", 1);
-		Node nodeC = new Node("C", 10);
+		Node nodeC = new Node("C", 6);
 		Node nodeB = new Node("B", 6);
 		Node nodeA = new Node("A", 0);
 		
@@ -53,13 +52,14 @@ public class MainTest {
 		
 		Graph graph = new Graph(nodes);
 		
-		Graph result = Dijkstra.calculateShortestPathFromSource(graph, nodeA);
+		Dijkstra.calculateShortestPathFromSource(graph, nodeA, null);
 		
-		for (Node nBase: result.getNodes()) {
+		for (Node nBase: graph.getNodes()) {
 			System.out.println("|Camino hasta " + nBase.getNodeId() + "|");
 			for (Node nPath: nBase.getShortestPath()) {
 				System.out.println(nPath.getNodeId());
 			}
+			System.out.println("Coste: " + nBase.getDistanceFromOrigin());
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		}
 

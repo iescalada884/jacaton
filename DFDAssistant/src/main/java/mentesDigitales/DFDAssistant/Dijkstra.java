@@ -8,7 +8,9 @@ import java.util.Set;
 
 public class Dijkstra {
 	
-	public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
+	public static Graph calculateShortestPathFromSource(
+			Graph graph, Node source, Node goal) {
+		
 	    source.setDistanceFromOrigin(0);
 
 	    Set<Node> examinedNodes = new HashSet<>();
@@ -16,15 +18,17 @@ public class Dijkstra {
 
 	    unexploredNodes.add(source);
 
-	    while (unexploredNodes.size() != 0) {
+	    while (unexploredNodes.size() != 0 && unexploredNodes.peek() != goal) {
 	        Node currentNode = unexploredNodes.poll();
 	        for (Entry < Node, Integer> adjacencyPair: 
 	          currentNode.getAdjacentNodes().entrySet()) {
 	            Node adjacentNode = adjacencyPair.getKey();
-	            Integer edgeWeight = adjacencyPair.getValue();
-	            Integer currentNodeCost = adjacentNode.getNodeCost();
+	            Integer costToAdjacentNote = adjacencyPair.getValue();
+	            Integer adjacentNodeCost = adjacentNode.getNodeCost();
 	            if (!examinedNodes.contains(adjacentNode)) {
-	                calculateMinimumDistance(adjacentNode, edgeWeight, currentNode, currentNodeCost);
+	                calculateMinimumDistance
+	                	(adjacentNode, costToAdjacentNote,
+	                	 currentNode, adjacentNodeCost);
 	                unexploredNodes.add(adjacentNode);
 	            }
 	        }
@@ -34,9 +38,10 @@ public class Dijkstra {
 	}
 	
 	private static void calculateMinimumDistance(Node adjacentNode,
-		Integer edgeWeigh, Node currentNode, Integer currentNodeCost) {
+		Integer costToAdjacentNote, Node currentNode, Integer adjacentNodeCost) {
 		Integer sourceDistance = currentNode.getDistanceFromOrigin();
-		Integer nodeDistance = sourceDistance + edgeWeigh + currentNodeCost;
+		Integer nodeDistance =
+				sourceDistance + costToAdjacentNote + adjacentNodeCost;
 		if (nodeDistance < adjacentNode.getDistanceFromOrigin()) {
 			adjacentNode.setDistanceFromOrigin(nodeDistance);
 			LinkedList<Node> shortestPath = new LinkedList<>(currentNode.getShortestPath());
