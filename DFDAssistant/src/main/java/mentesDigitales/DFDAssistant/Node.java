@@ -11,9 +11,9 @@ public class Node implements Comparable<Node> {
     
     private Integer nodeCost;
     
-    private Integer distanceFromOrigin = Integer.MAX_VALUE;
-    
     Map<Node, Integer> adjacentNodes = new HashMap<>();
+    
+    private Integer distanceFromOrigin = Integer.MAX_VALUE;
     
     private List<Node> shortestPath = new LinkedList<>();
     
