@@ -24,12 +24,12 @@ public class PlantaService {
         return plantaRepository.save(planta);
     }
 
-    public Optional<Planta> buscarPorIdCompuesta(Long idEdificio, Long idPlanta) {
+    public Optional<Planta> buscarPorIdCompuesta(Long idEdificio, Long numPlanta) {
         PlantaId plantaId = new PlantaId();
         plantaId.setIdEdificio(idEdificio);
-        idPlanta.setIdPlanta(idPlanta);
+        plantaId.setNumPlanta(numPlanta);
         
-    	return plantaRepository.findById(plantaId);
+        return plantaRepository.findById(plantaId);
     }
 
     public List<Planta> buscarTodasLasPlantas() {
@@ -39,7 +39,7 @@ public class PlantaService {
     public void eliminarPlantaIdCompuesta(Long idEdificio, Long idPlanta) {
         PlantaId plantaId = new PlantaId();
         plantaId.setIdEdificio(idEdificio);
-        idPlanta.setIdPlanta(idPlanta);
+        plantaId.setNumPlanta(numPlanta);
         
         plantaRepository.deleteById(plantaId);
     }

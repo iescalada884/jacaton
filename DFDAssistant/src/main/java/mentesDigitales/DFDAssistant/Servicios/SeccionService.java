@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mentesDigitales.DFDAssistant.entidades.Seccion;
+import mentesDigitales.DFDAssistant.entidades.Ids.PlantaId;
+import mentesDigitales.DFDAssistant.entidades.Ids.SeccionId;
 import mentesDigitales.DFDAssistant.repositorios.Interfaces.ISeccionRepositorio;
 
 @Service
@@ -23,15 +25,27 @@ public class SeccionService {
         return seccionRepository.save(seccion);
     }
 
-    public Optional<Seccion> buscarPorId(Long id) {
-        return seccionRepository.findById(id);
+    public Optional<Seccion> buscarPorIdCompuesta(Long idEdificio, Long numPlanta, Long idSeccion) {
+        SeccionId seccionId = new SeccionId();
+
+        seccionId.setIdEdificio(idEdificio);
+        seccionId.setNumPlanta(numPlanta);
+        seccionId.setIdSeccion(seccionId);
+        
+        return seccionRepository.findById(seccionId);
     }
 
     public List<Seccion> buscarTodasLasSecciones() {
         return seccionRepository.findAll();
     }
 
-    public void eliminarSeccion(Long id) {
-        seccionRepository.deleteById(id);
+    public void eliminarSeccion(Long idEdificio, Long numPlanta, Long idSeccion) {
+        SeccionId seccionId = new SeccionId();
+
+        seccionId.setIdEdificio(idEdificio);
+        seccionId.setNumPlanta(numPlanta);
+        seccionId.setIdSeccion(seccionId);
+        
+        seccionRepository.deleteById(seccionId);
     }
 }
