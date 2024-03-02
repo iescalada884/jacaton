@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import mentesDigitales.DFDAssistant.entidades.Mapa;
 
 @Repository
-public interface IMapaInterface extends JpaRepository<Mapa, Long> {
+public interface IMapaRepositorio extends JpaRepository<Mapa, Long> {
 
 }
