@@ -1,4 +1,4 @@
-package mentesDigitales.DFDAssistant;
+package mentesDigitales.DFDAssistant.rutas;
 
 import java.util.HashMap;
 import java.util.HashSet;
